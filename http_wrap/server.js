@@ -26,8 +26,8 @@ const anisetteCacheTime = 20
 
 async function getAnisetteData() {
   if (!anisetteStore.data || new Date() - anisetteStore.update > anisetteCacheTime * 1000) {
-    anisetteStore.data = await _getAnisetteData()
-    anisetteStore.update = new Date()
+      anisetteStore.data = await _getAnisetteData()
+      anisetteStore.update = new Date()
   }
   return anisetteStore.data
 }
@@ -41,9 +41,15 @@ const server = http.createServer(async (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   
-  const resbody = await getAnisetteData()
-  
-  res.end(JSON.stringify(resbody));
+  let resbody = null  
+  try {
+    const retJson = await getAnisetteData()
+    retbody = JSON.stringify(retJson)
+  } catch (e) {
+    console.log(e)
+    resbody = e
+  }
+  res.end(retbody);
 });
 
 server.listen(port, hostname, () => {
