@@ -37,19 +37,19 @@ const port = 6969;
 
 const server = http.createServer(async (req, res) => {
   console.log("[" + new Date() + "] - " + req.socket.localAddress + " - " + req.method + " " + req.url)
-  
-  res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   
   let resbody = null  
   try {
     const retJson = await getAnisetteData()
-    retbody = JSON.stringify(retJson)
+    resbody = JSON.stringify(retJson)
+    res.statusCode = 200;
   } catch (e) {
     console.log(e)
-    resbody = e
+    resbody = e.toString()
+    res.statusCode = 500;
   }
-  res.end(retbody);
+  res.end(resbody);
 });
 
 server.listen(port, hostname, () => {
