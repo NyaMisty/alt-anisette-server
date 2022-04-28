@@ -10,14 +10,14 @@ RUN entrypoint true \
   && bash /app/install_icloud.sh \
   && rm -rf /tmp/iCloud
 
-RUN apt-get update && apt-get install -y p7zip-full vim
+RUN apt-get update && apt-get install -y p7zip-full vim nodejs
 
 RUN mkdir -p /tmp/ahk && cd /tmp/ahk \
   && wget -O /tmp/ahk/ahk.exe https://github.com/Lexikos/AutoHotkey_L/releases/download/v1.1.33.10/AutoHotkey_1.1.33.10_setup.exe \
   && (mkdir /ahk && cd /ahk && 7z x /tmp/ahk/ahk.exe AutoHotkeyA32.exe AutoHotkeyU32.exe AutoHotkeyU64.exe WindowSpy.ahk) \
   && chmod +x /ahk/AutoHotkey*.exe
 
-ADD http_wrap/server.exe /app/
+ADD http_wrap/server* /app/
 ADD anisette_extract/Release/AltWindowsAnisette.exe /app/
 ADD scripts/* /app/
 

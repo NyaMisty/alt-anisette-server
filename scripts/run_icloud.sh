@@ -23,4 +23,5 @@ timeout 45s wine "Z:\\ahk\\AutoHotkeyU32.exe" "Z:\\app\\icloud_login.ahk"
 sleep 1
 
 export NODE_SKIP_PLATFORM_CHECK=1
-wine "Z:\\app\\server.exe"
+#wine "Z:\\app\\server.exe"
+(cd /app; node server_linux.js)
