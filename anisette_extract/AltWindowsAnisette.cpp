@@ -238,7 +238,7 @@ id __cdecl ALTClientInfoReplacementFunction(void*)
 	ObjcObject* NSString = (ObjcObject*)objc_getClass("NSString");
 	id stringInit = sel_registerName("stringWithUTF8String:");
 
-	ObjcObject* clientInfo = (ObjcObject*)((id(*)(id, SEL, const char*))objc_msgSend)(NSString, stringInit, "<MacBookPro15,1> <Mac OS X;10.15.2;19C57> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>");
+	ObjcObject* clientInfo = (ObjcObject*)((id(*)(id, SEL, const char*))objc_msgSend)(NSString, stringInit, "<MacBookPro16,1> <Mac OS X;13.1;22C65> <com.apple.AuthKit/1 (com.apple.dt.Xcode/3594.4.19)>");
 
 	odslog("Swizzled Client Info: " << clientInfo->description());
 
